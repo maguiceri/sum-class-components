@@ -12,32 +12,30 @@ class App extends React.Component {
     }
   }
 
+  handleChange(e) {
+    const {name,value} = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
   handleSum() {
-    this.setState({
-      result: parseInt(this.state.firstNum) + parseInt(this.state.secondNum)
-    })
-  }
+    const {firstNum, secondNum} = this.state
 
-  handleFirstNum(e) {
     this.setState({
-      firstNum: e.target.value
-    })
-  }
-
-  handleSecondNum(e) {
-    this.setState({
-      secondNum: e.target.value
+      result: parseInt(firstNum) + parseInt(secondNum)
     })
   }
 
   render() {
+    const {result} = this.state
     return (
       <React.Fragment>
-        <input onChange={(e) => this.handleFirstNum(e)} type="text" />
-        <input onChange={(e) => this.handleSecondNum(e)} type="text" />
+        <input name="firstNum" onChange={(e) => this.handleChange(e)} type="text" />
+        <input name="secondNum" onChange={(e) => this.handleChange(e)} type="text" />
         <button onClick={ () => this.handleSum()}>Sumar</button>
         <div>
-          <p>Resultado: {this.state.result}</p>
+          <p>Resultado: {result}</p>
         </div>
       </React.Fragment>
 

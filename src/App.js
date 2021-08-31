@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./App.scss"
 
 class App extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class App extends React.Component {
   }
 
   handleChange(e) {
-    const {name,value} = e.target
+    const {name,value} = e.target //desestructuracion
     this.setState({
-      [name]: value
+      [name]: value   // [e.target.name] lee variable y dinamisa la funcion = e.target.value; 
     })
   }
 
@@ -23,21 +23,21 @@ class App extends React.Component {
     const {firstNum, secondNum} = this.state
 
     this.setState({
-      result: parseInt(firstNum) + parseInt(secondNum)
+      result: parseInt(firstNum) + parseInt(secondNum) //pasa de estring a numero, si no pongo esto concatena
     })
   }
 
   render() {
     const {result} = this.state
     return (
-      <React.Fragment>
-        <input name="firstNum" onChange={(e) => this.handleChange(e)} type="text" />
-        <input name="secondNum" onChange={(e) => this.handleChange(e)} type="text" />
-        <button onClick={ () => this.handleSum()}>Sumar</button>
+      <div className="inputs">
+        <input className="input"name="firstNum" onChange={(e) => this.handleChange(e)} type="number" />
+        <input className="input" name="secondNum" onChange={(e) => this.handleChange(e)} type="number" />
+        <button className="button" onClick={ () => this.handleSum()}>Sumar</button>
         <div>
           <p>Resultado: {result}</p>
         </div>
-      </React.Fragment>
+      </div>
 
     )
   }
